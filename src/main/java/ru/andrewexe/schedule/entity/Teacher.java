@@ -2,12 +2,14 @@ package ru.andrewexe.schedule.entity;
 
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.util.HashSet;
 import java.util.Set;
 
 
 @Entity
+@Data
 public class Teacher {
 
     @Id
@@ -17,7 +19,7 @@ public class Teacher {
     @Column(name = "degree")
     private String academicDegree;
 
-    @Column (name = "fullname", nullable = false)
+    @Column (name = "fullName", nullable = false)
     private String fullName;
 
     @Column (name = "phoneNumber", nullable = true)
