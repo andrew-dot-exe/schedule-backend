@@ -1,16 +1,14 @@
 package ru.andrewexe.schedule.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
-import ru.andrewexe.schedule.dto.SubjectRequestDto;
-import ru.andrewexe.schedule.dto.SubjectResponseDto;
+import ru.andrewexe.schedule.dto.subject.AddSubjectRequestDto;
+import ru.andrewexe.schedule.dto.subject.SubjectRequestDto;
+import ru.andrewexe.schedule.dto.subject.SubjectResponseDto;
 import ru.andrewexe.schedule.entity.Subject;
-import ru.andrewexe.schedule.entity.Teacher;
 import ru.andrewexe.schedule.repository.SubjectRepository;
 
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class SubjectService {
@@ -36,7 +34,7 @@ public class SubjectService {
         return responseDto;
     }
 
-    public SubjectResponseDto createSubject(SubjectRequestDto requestDto){
+    public SubjectResponseDto createSubject(AddSubjectRequestDto requestDto){
         Subject subject = new Subject();
         subject.setName(requestDto.name());
         if (requestDto != null) {
@@ -50,7 +48,7 @@ public class SubjectService {
         return responseDto;
     }
 
-    public SubjectResponseDto updateSubject(SubjectRequestDto requestDto){
+    public SubjectResponseDto updateSubject(AddSubjectRequestDto requestDto){
         // update is the same as inserting
         return createSubject(requestDto);
     }

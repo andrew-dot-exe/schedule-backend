@@ -2,10 +2,9 @@ package ru.andrewexe.schedule.service;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.data.metrics.DefaultRepositoryTagsProvider;
 import org.springframework.stereotype.Service;
-import ru.andrewexe.schedule.dto.TeacherResponseDto;
-import ru.andrewexe.schedule.dto.TeacherRequestDto;
+import ru.andrewexe.schedule.dto.teacher.TeacherResponseDto;
+import ru.andrewexe.schedule.dto.teacher.TeacherRequestDto;
 import ru.andrewexe.schedule.entity.Teacher;
 import ru.andrewexe.schedule.repository.TeacherRepository;
 

@@ -1,4 +1,4 @@
-package ru.andrewexe.schedule.dto;
+package ru.andrewexe.schedule.dto.teacher;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
