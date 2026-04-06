@@ -9,7 +9,8 @@ import ru.andrewexe.schedule.service.TeacherService;
 
 import java.util.List;
 
-@RestController(value = "/api/v1")
+@RestController
+@RequestMapping("/api/v1")
 @Tag(name = "Контроллер преподавателей", description = "Контроллер, отвечающий за работу с преподавателями.")
 public class TeacherController {
 
