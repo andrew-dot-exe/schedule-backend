@@ -22,7 +22,7 @@ public class User implements UserDetails {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    private UserRole roles;
+    private UserRole role;
 
     @Column(name = "login", nullable = false, unique = true)
     private String login;
@@ -73,5 +73,9 @@ public class User implements UserDetails {
 
     public ArrayList<String> getRoles() {
         return null;
+    }
+
+    public String getRole() {
+        return role.toString();
     }
 }

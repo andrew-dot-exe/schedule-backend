@@ -21,12 +21,10 @@ public class UserService implements UserDetailsService{
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = repository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("Not found"));
-        return new User(
-                user.getUsername(),
-                user.getPassword(),
-                user.getRoles().stream().map(SimpleGrantedAuthority::new).toList()
-                // ВНИМАНИЕ: роли сделаны пока что заглушками, но их обязательно
-                // нужно реализовать.
-        );
+        return org.springframework.security.core.userdetails.User.builder()
+                .username(user.getUsername())
+                .password(user.getPassword())
+                .roles(user.getRole())
+                .build();
     }
 }
