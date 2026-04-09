@@ -45,12 +45,21 @@ public class TeacherService {
 
     public TeacherResponseDto createTeacher(TeacherRequestDto requestDto){
         Teacher teacher = new Teacher();
+        if (requestDto.Id() != null) {
+            teacher.setId(requestDto.Id());
+        }
         teacher.setAcademicDegree(requestDto.academicDegree());
         teacher.setFullName(requestDto.fullName());
         teacher.setPhoneNumber(requestDto.phoneNumber());
         teacher.setVkId(requestDto.vkId());
-        repository.save(teacher);
-        return null;
+        Teacher savedTeacher = repository.save(teacher);
+        return new TeacherResponseDto(
+                savedTeacher.getId(),
+                savedTeacher.getAcademicDegree(),
+                savedTeacher.getFullName(),
+                savedTeacher.getPhoneNumber(),
+                savedTeacher.getVkId()
+        );
     }
 
     public TeacherResponseDto updateTeacher(TeacherRequestDto requestDto){
@@ -74,4 +83,3 @@ public class TeacherService {
     }
 
 }
-
