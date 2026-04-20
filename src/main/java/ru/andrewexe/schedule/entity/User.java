@@ -1,7 +1,6 @@
 package ru.andrewexe.schedule.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.jspecify.annotations.Nullable;
 import org.springframework.security.core.GrantedAuthority;
@@ -13,7 +12,6 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity(name = "schedule_user")
-@AllArgsConstructor
 @NoArgsConstructor
 public class User implements UserDetails {
 
@@ -30,9 +28,25 @@ public class User implements UserDetails {
     @Column(name = "password", nullable = false)
     private String password;
 
+    @Column(name = "name")
+    private String name;
+
+    public User(Long id, UserRole role, String login, String password) {
+        this(id, role, login, password, login);
+    }
+
+    public User(Long id, UserRole role, String login, String password, String name) {
+        this.id = id;
+        this.role = role;
+        this.login = login;
+        this.password = password;
+        this.name = name;
+    }
+
     public User(String username, String password, List<SimpleGrantedAuthority> roles){
         this.login = username;
         this.password = password;
+        this.name = username;
         roles = null;
     }
 
@@ -77,5 +91,9 @@ public class User implements UserDetails {
 
     public String getRole() {
         return role.toString();
+    }
+
+    public String getName() {
+        return name == null ? login : name;
     }
 }
