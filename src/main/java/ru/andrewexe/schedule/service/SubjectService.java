@@ -9,6 +9,7 @@ import ru.andrewexe.schedule.entity.Subject;
 import ru.andrewexe.schedule.repository.SubjectRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SubjectService {
@@ -20,10 +21,22 @@ public class SubjectService {
         this.repository  = repository;
     }
 
-    public List<SubjectResponseDto> GetSubjects(){
+    public List<SubjectResponseDto> getSubjects(){
         return repository.findAll().stream().map(
                 subject -> new SubjectResponseDto(subject.getId(), subject.getName())
         ).toList();
+    }
+
+    public SubjectResponseDto getSubjectById(Long id)
+    {
+        Optional<Subject> subject = repository.findById(id);
+        if(subject.isPresent()){
+            return new SubjectResponseDto(
+                    subject.get().getId(),
+                    subject.get().getName()
+            );
+        }
+        return null;
     }
 
     public SubjectResponseDto findOneSubject(SubjectRequestDto requestDto){
