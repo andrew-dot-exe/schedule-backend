@@ -22,6 +22,13 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(new ErrorResponseDto("BAD_REQUEST", "Ошибка валидации"), HttpStatus.BAD_REQUEST);
     }
 
+    // Auth exceptions handler
+    @ExceptionHandler(org.springframework.security.authorization.AuthorizationDeniedException.class)
+    public ResponseEntity<ErrorResponseDto> handleAuthError(Exception ex){
+        return new ResponseEntity<>(new ErrorResponseDto("NOT_AUTHORIZED", "Not authorised"), HttpStatus.FORBIDDEN);
+    }
+
+
     // Общий перехватчик для всех остальных системных ошибок
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponseDto> handleAll(Exception ex) {
